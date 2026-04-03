@@ -138,7 +138,7 @@ font-size:18px;
     justify-content:center;
 }
 
-.icono-carrito.carrito-alerta-visible::after{
+.icono-carrito.carrito-con-items::after{
     content:"!";
     position:absolute;
     top:-7px;
@@ -155,6 +155,9 @@ font-size:18px;
     font-weight:700;
     line-height:1;
     box-shadow:0 0 0 2px #000000;
+}
+
+.icono-carrito.carrito-alerta-animada::after{
     animation:alertaCarrito 0.22s ease-out;
 }
 

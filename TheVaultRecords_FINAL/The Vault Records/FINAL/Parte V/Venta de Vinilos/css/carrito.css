@@ -65,6 +65,48 @@ input {
   color: var(--accent);
 }
 
+.icono-carrito {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icono-carrito.carrito-con-items::after {
+  content: "!";
+  position: absolute;
+  top: -7px;
+  right: -10px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--ink);
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 0 0 2px #000;
+}
+
+.icono-carrito.carrito-alerta-animada::after {
+  animation: alertaCarrito 0.22s ease-out;
+}
+
+@keyframes alertaCarrito {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .boton-enlace:focus-visible,
 .boton-principal:focus-visible {
   outline: 2px solid var(--accent);

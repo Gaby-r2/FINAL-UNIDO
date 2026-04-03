@@ -11,7 +11,7 @@
 <body>
   <div class="pagina">
     <header class="barra-superior">
-      <a class="boton-enlace" href="../../Parte I/Proyecto final/Gallery.html">ATRÁS</a>
+      <a class="boton-enlace" href="../../Parte IV/Proyecto Final/Productos_Artistas.html">ATRÁS</a>
       <span class="simbolo-superior" aria-hidden="true">🛒</span>
     </header>
 
@@ -59,6 +59,10 @@
       const cart = cartApi ? cartApi.getCart() : [];
       const total = cartApi ? cartApi.getCartTotal(cart) : 0;
       const formattedTotal = cartApi ? cartApi.formatCurrency(total) : "$0.00";
+
+      if (cartApi && cartApi.syncCartIndicators) {
+        cartApi.syncCartIndicators({ cart: cart });
+      }
 
       totalNode.textContent = formattedTotal;
       payTotalInput.value = formattedTotal;

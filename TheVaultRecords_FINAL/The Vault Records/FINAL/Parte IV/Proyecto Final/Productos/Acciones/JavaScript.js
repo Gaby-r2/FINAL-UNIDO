@@ -1,5 +1,9 @@
 const CART_STORAGE_KEY = "theVaultCart";
 const CART_PAGE_PATH = "../../../Parte V/Venta de Vinilos/carrito.html";
+const CART_ICON_SELECTOR = "#barra > span:last-child, .cart-link, .simbolo-superior";
+const CART_ICON_CLASS = "icono-carrito";
+const CART_NOTICE_CLASS = "carrito-con-items";
+const CART_ANIMATION_CLASS = "carrito-alerta-animada";
 
 function getCart() {
     try {
@@ -12,12 +16,15 @@ function getCart() {
 }
 
 function saveCart(cart) {
+    const safeCart = Array.isArray(cart) ? cart : [];
+
     try {
-        const safeCart = Array.isArray(cart) ? cart : [];
         localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(safeCart));
     } catch (error) {
         // Si el navegador bloquea storage, evitamos romper la página.
     }
+
+    syncCartIndicators({ cart: safeCart });
 }
 
 function formatCurrency(value) {
@@ -28,6 +35,13 @@ function getCartTotal(cart = getCart()) {
     return cart.reduce(function(sum, item) {
         return sum + (Number(item.price) || 0) * (Number(item.quantity) || 0);
     }, 0);
+}
+
+function cartHasItems(cart = getCart()) {
+    return cart.some(function(item) {
+        const quantity = Number(item && item.quantity);
+        return Number.isFinite(quantity) ? quantity > 0 : Boolean(item);
+    });
 }
 
 function normalizePrice(priceText) {
@@ -133,22 +147,48 @@ function goToCart() {
     window.location.href = CART_PAGE_PATH;
 }
 
-function showCartNotice(cartIcon) {
-    if (!cartIcon) {
-        return;
-    }
+function getCartIcons() {
+    return Array.from(document.querySelectorAll(CART_ICON_SELECTOR));
+}
 
-    cartIcon.classList.remove("carrito-alerta-visible");
-    void cartIcon.offsetWidth;
-    cartIcon.classList.add("carrito-alerta-visible");
+function syncCartIndicators(options) {
+    const config = options || {};
+    const cart = Array.isArray(config.cart) ? config.cart : getCart();
+    const hasItems = cartHasItems(cart);
+    const shouldAnimate = Boolean(config.animate) && hasItems;
+
+    getCartIcons().forEach(function(cartIcon) {
+        cartIcon.classList.add(CART_ICON_CLASS);
+        cartIcon.classList.remove(CART_ANIMATION_CLASS);
+
+        if (hasItems) {
+            cartIcon.classList.add(CART_NOTICE_CLASS);
+
+            if (shouldAnimate) {
+                void cartIcon.offsetWidth;
+                cartIcon.classList.add(CART_ANIMATION_CLASS);
+            }
+        } else {
+            cartIcon.classList.remove(CART_NOTICE_CLASS);
+        }
+    });
+
+    return hasItems;
+}
+
+function showCartNotice(cart) {
+    syncCartIndicators({
+        cart: cart,
+        animate: true
+    });
 }
 
 function attachProductPageActions() {
     const actionButtons = Array.from(document.querySelectorAll(".botones .boton"));
-    const cartIcon = document.querySelector("#barra > span:last-child, .cart-link");
+    const cartIcon = document.querySelector("#barra > span:last-child");
 
     if (cartIcon) {
-        cartIcon.classList.add("icono-carrito");
+        cartIcon.classList.add(CART_ICON_CLASS);
         cartIcon.style.cursor = "pointer";
         cartIcon.setAttribute("role", "link");
         cartIcon.setAttribute("tabindex", "0");
@@ -160,14 +200,9 @@ function attachProductPageActions() {
                 goToCart();
             }
         });
-
-        // Mantener el ícono de alerta visible mientras el carrito tenga al menos un producto
-        if (getCart().length > 0) {
-            cartIcon.classList.add("carrito-alerta-visible");
-        } else {
-            cartIcon.classList.remove("carrito-alerta-visible");
-        }
     }
+
+    syncCartIndicators();
 
     if (!actionButtons.length) {
         return;
@@ -183,16 +218,16 @@ function attachProductPageActions() {
     if (addButton) {
         addButton.addEventListener("click", function(event) {
             event.preventDefault();
-            addItemToCart(buildProductData());
-            showCartNotice(cartIcon);
+            const cart = addItemToCart(buildProductData());
+            showCartNotice(cart);
         });
     }
 
     if (buyButton) {
         buyButton.addEventListener("click", function(event) {
             event.preventDefault();
-            addItemToCart(buildProductData());
-            showCartNotice(cartIcon);
+            const cart = addItemToCart(buildProductData());
+            showCartNotice(cart);
             goToCart();
         });
     }
@@ -200,11 +235,19 @@ function attachProductPageActions() {
 
 attachProductPageActions();
 
+window.addEventListener("storage", function(event) {
+    if (event.key === CART_STORAGE_KEY || event.key === null) {
+        syncCartIndicators();
+    }
+});
+
 window.TheVaultCart = {
     key: CART_STORAGE_KEY,
     getCart: getCart,
     saveCart: saveCart,
     addItemToCart: addItemToCart,
     formatCurrency: formatCurrency,
-    getCartTotal: getCartTotal
+    getCartTotal: getCartTotal,
+    cartHasItems: cartHasItems,
+    syncCartIndicators: syncCartIndicators
 };
