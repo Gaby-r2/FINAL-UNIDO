@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contáctanos | The Vault Records</title>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="contacto.css">
+</head>
+<body>
+
+<header class="topbar">
+
+  <!-- MENÚ A LA IZQUIERDA -->
+  <nav class="menu-nav">
+    <input type="checkbox" id="menu-toggle">
+
+    <label for="menu-toggle" class="menu-button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <div class="side-menu">
+      <label for="menu-toggle" class="close-btn">&times;</label>
+
+      <div class="menu-links">
+        <a href="../../Parte I/Proyecto final/Gallery.html">INICIO</a>
+        <a href="proyecto.html">QUIENES SOMOS</a>
+        <a href="../../Parte II/NoticiasIPW/noticias5-ipw.html">NOTICIAS</a>
+        <a href="../../Parte IV/Proyecto Final/Productos_Artistas.html">ARTISTAS</a>
+        <a href="contato.html">CONTACTANOS</a>
+        <a href="../../Parte I/Proyecto final/faq.html">FAQs</a>
+      </div>
+    </div>
+  </nav>
+
+
+</header>
+
+<main class="contact-page">
+  <section class="contact-card">
+
+    <div class="contact-info">
+      <h2>Hablemos de música, vinilos y pedidos</h2>
+      <p class="intro">
+        ¿Tenés dudas, querés pedir un vinilo especial o simplemente escribirnos?
+        Mandanos un mensaje y te responderemos lo antes posible.
+      </p>
+
+      <div class="info-list">
+        <div class="info-item">
+          <span class="info-title">Correo</span>
+          <span class="info-text">vaultrcr@gmail.com</span>
+        </div>
+
+        <div class="info-item">
+          <span class="info-title">Teléfono</span>
+          <span class="info-text">1800-0000</span>
+        </div>
+
+        <div class="info-item">
+          <span class="info-title">Horario</span>
+          <span class="info-text">Lunes a Viernes · 8:00 AM - 5:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-box">
+      <h3>Envíanos un mensaje</h3>
+
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre">
+        </div>
+
+        <div class="form-group">
+          <label for="correo">Correo</label>
+          <input type="email" id="correo" name="correo" placeholder="tucorreo@email.com">
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="text" id="telefono" name="telefono" placeholder="0000-0000">
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="6" placeholder="Escribe aquí tu mensaje..."></textarea>
+        </div>
+
+        <button type="submit" class="send-btn">Enviar mensaje</button>
+        <p id="formMessage" class="form-message"></p>
+      </form>
+    </div>
+
+  </section>
+</main>
+
+<script src="contacto.js"></script>
+</body>
+</html>

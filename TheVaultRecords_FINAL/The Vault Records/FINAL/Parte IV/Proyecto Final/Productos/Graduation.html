@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang= "es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Estilos/estilos_PAlbum.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+
+</head>
+<body>
+
+<!-- SECCIÓN 1 -->
+<header id="barra">
+<a href="../Productos_Artistas.html">   
+    <span>ATRÁS</span>
+</a> 
+<span>🛒</span>
+</header>
+
+
+<!-- SECCIÓN 2 Y 3 -->
+<section id="contenido">
+
+<!-- PANEL IZQUIERDO -->
+<div id="izquierda">
+
+<img src="Imagenes Album/Graduation.webp" class="imagen">
+
+<h2>Vinilo Graduation (Deluxe Edition)</h2>
+
+<p>
+Graduation (Deluxe Edition)<br>
+Vinilo negro 12 pulgadas 
+</p>
+
+<p>
+13 canciones
+</p>
+
+</div>
+
+
+<!-- PANEL DERECHO -->
+<div id="derecha">
+
+<h2>Graduation (Deluxe Edition)</h2>
+<p>Lanzado: 11 septiembre 2007</p>
+<p class="precio">$64.99</p>
+
+<hr>
+
+<h3>Cantidad</h3>
+
+<div class="cantidad">
+    <button onclick="disminuir()">-</button>
+    <span id="numero">1</span>
+    <button onclick="aumentar()">+</button>
+</div>
+
+<section class="botones">
+    <button class="boton" onclick="cambiarColor(this)">
+    AGREGAR AL CARRITO
+    </button>
+
+    <button class="boton" onclick="cambiarColor(this)">
+    COMPRAR
+    </button>
+    </section>
+</section>
+
+
+<script src="Acciones/JavaScript.js"></script>
+
+</body>
+</html>

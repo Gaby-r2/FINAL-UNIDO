@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pago</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/pago.css">
+</head>
+<body>
+  <div class="pagina">
+    <header class="barra-superior">
+      <a class="boton-enlace" href="carrito.html">ATRÁS</a>
+      <h1 class="titulo-superior">PAGO</h1>
+    </header>
+
+    <main class="principal-pago">
+      <!-- AQUÍ conectar el form con backend/ruta real de checkout -->
+      <form class="panel-pago" action="#" method="get">
+        <section class="resumen-pago" aria-label="Resumen de compra">
+          <h2 class="titulo-seccion">Finaliza tu compra</h2>
+          <p class="etiqueta-resumen">TOTAL A PAGAR</p>
+          <div class="caja-total" id="payTotalDisplay">$55.00</div>
+        </section>
+
+        <section class="campos-pago" aria-label="Datos de pago">
+          <label class="etiqueta" for="fullName">Nombre completo:</label>
+          <input class="entrada-estilizada" id="fullName" name="fullName" type="text" placeholder="..." autocomplete="name">
+
+          <p class="etiqueta">Método de pago:</p>
+          <div class="fila-metodo">
+            <label class="opcion-metodo">
+              <input class="entrada-metodo" type="radio" name="paymentMethod" value="Efectivo" checked>
+              <span class="boton-metodo">Efectivo</span>
+            </label>
+
+            <label class="opcion-metodo">
+              <input class="entrada-metodo" type="radio" name="paymentMethod" value="Transferencia">
+              <span class="boton-metodo">Transferencia</span>
+            </label>
+          </div>
+
+          <div class="contenedor-finalizar">
+            <a class="boton-principal" href="#successModal" id="finishPurchase">Finalizar compra</a>
+          </div>
+        </section>
+      </form>
+    </main>
+  </div>
+
+  <div class="fondo-modal" id="successModal">
+    <section class="tarjeta-modal" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+      <h2 class="titulo-modal" id="successTitle">Compra realizada con exito!</h2>
+      <a class="boton-cerrar-modal" id="exitToGallery" href="../../Parte I/Proyecto final/Gallery.html">Salir</a>
+    </section>
+  </div>
+
+  <script src="../../Parte IV/Proyecto Final/Productos/Acciones/JavaScript.js"></script>
+  <script>
+    "use strict";
+
+    const cartApi = window.TheVaultCart;
+    const totalFromCart = new URLSearchParams(window.location.search).get("payTotal");
+    const payTotalDisplay = document.getElementById("payTotalDisplay");
+    const finishPurchase = document.getElementById("finishPurchase");
+    const exitToGallery = document.getElementById("exitToGallery");
+
+    if (totalFromCart) {
+      payTotalDisplay.textContent = totalFromCart;
+    } else if (cartApi) {
+      payTotalDisplay.textContent = cartApi.formatCurrency(cartApi.getCartTotal());
+    }
+
+    function clearCart() {
+      if (cartApi) {
+        cartApi.saveCart([]);
+      }
+    }
+
+    finishPurchase.addEventListener("click", clearCart);
+    exitToGallery.addEventListener("click", clearCart);
+  </script>
+</body>
+</html>

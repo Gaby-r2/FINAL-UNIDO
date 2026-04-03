@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+  <title>Carrito</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/carrito.css">
+</head>
+<body>
+  <div class="pagina">
+    <header class="barra-superior">
+      <a class="boton-enlace" href="../../Parte I/Proyecto final/Gallery.html">ATRÁS</a>
+      <span class="simbolo-superior" aria-hidden="true">🛒</span>
+    </header>
+
+    <main class="principal-carrito">
+      <form class="formulario-carrito" action="pago.html" method="get" id="cartForm">
+        <section class="lista-carrito" aria-label="Productos del carrito" id="cartItems"></section>
+
+        <section class="panel-total" aria-label="Total del carrito">
+          <p class="etiqueta-total">Total del carrito:</p>
+          <p class="valor-total" id="cartTotal">$0.00</p>
+        </section>
+        <input type="hidden" id="payTotalInput" name="payTotal" value="$0.00">
+
+        <div class="contenedor-pago">
+          <button class="boton-principal" id="checkoutButton" type="submit">Proseguir al pago</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script src="../../Parte IV/Proyecto Final/Productos/Acciones/JavaScript.js"></script>
+  <script>
+    "use strict";
+
+    const cartApi = window.TheVaultCart;
+    const cartForm = document.getElementById("cartForm");
+    const cartItemsContainer = document.getElementById("cartItems");
+    const totalNode = document.getElementById("cartTotal");
+    const payTotalInput = document.getElementById("payTotalInput");
+    const checkoutButton = document.getElementById("checkoutButton");
+
+    function escapeHtml(value) {
+      return String(value || "").replace(/[&<>"']/g, function(character) {
+        return {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          "\"": "&quot;",
+          "'": "&#39;"
+        }[character];
+      });
+    }
+
+    function renderCart() {
+      const cart = cartApi ? cartApi.getCart() : [];
+      const total = cartApi ? cartApi.getCartTotal(cart) : 0;
+      const formattedTotal = cartApi ? cartApi.formatCurrency(total) : "$0.00";
+
+      totalNode.textContent = formattedTotal;
+      payTotalInput.value = formattedTotal;
+
+      if (!cart.length) {
+        cartItemsContainer.classList.add("vacia");
+        cartItemsContainer.innerHTML = '<p class="carrito-vacio">Tu carrito está vacío.</p>';
+        checkoutButton.disabled = true;
+        return;
+      }
+
+      cartItemsContainer.classList.remove("vacia");
+      checkoutButton.disabled = false;
+      cartItemsContainer.innerHTML = cart.map(function(item, index) {
+        const itemId = escapeHtml(item.id);
+        const itemName = escapeHtml(item.name);
+        const itemImage = escapeHtml(item.image);
+        const unitPrice = cartApi.formatCurrency(item.price);
+        const subtotal = cartApi.formatCurrency((Number(item.price) || 0) * (Number(item.quantity) || 0));
+
+        return `
+          <article class="articulo-carrito">
+            <div class="marco-imagen">
+              <img src="${itemImage}" alt="Portada de ${itemName}">
+            </div>
+
+            <div class="info-articulo">
+              <h2 class="titulo-articulo">${itemName}</h2>
+              <p class="precio-articulo">Precio unitario: ${unitPrice}</p>
+              <p class="subtotal-articulo">Subtotal: ${subtotal}</p>
+            </div>
+
+            <div class="panel-cantidad">
+              <p class="etiqueta-cantidad">Cantidad</p>
+              <div class="caja-cantidad" role="group" aria-label="Cantidad de ${itemName}">
+                <button class="boton-cantidad" type="button" aria-label="Disminuir cantidad de ${itemName}" data-action="decrease" data-id="${itemId}">-</button>
+                <span class="valor-cantidad" aria-live="polite" aria-atomic="true">${item.quantity}</span>
+                <button class="boton-cantidad" type="button" aria-label="Aumentar cantidad de ${itemName}" data-action="increase" data-id="${itemId}">+</button>
+              </div>
+              <button class="boton-eliminar" type="button" data-action="remove" data-id="${itemId}">Eliminar</button>
+            </div>
+          </article>
+          ${index < cart.length - 1 ? '<div class="divisor-articulo" aria-hidden="true"></div>' : ''}
+        `;
+      }).join("");
+    }
+
+    cartItemsContainer.addEventListener("click", function(event) {
+      const actionButton = event.target.closest("[data-action]");
+
+      if (!actionButton || !cartApi) {
+        return;
+      }
+
+      const action = actionButton.dataset.action;
+      const productId = actionButton.dataset.id;
+      const cart = cartApi.getCart();
+      const itemIndex = cart.findIndex(function(item) {
+        return item.id === productId;
+      });
+
+      if (itemIndex === -1) {
+        return;
+      }
+
+      if (action === "increase") {
+        cart[itemIndex].quantity = (Number(cart[itemIndex].quantity) || 0) + 1;
+      }
+
+      if (action === "decrease") {
+        const currentQuantity = Number(cart[itemIndex].quantity) || 1;
+
+        if (currentQuantity > 1) {
+          cart[itemIndex].quantity = currentQuantity - 1;
+        }
+      }
+
+      if (action === "remove") {
+        cart.splice(itemIndex, 1);
+      }
+
+      cartApi.saveCart(cart);
+      renderCart();
+    });
+
+    cartForm.addEventListener("submit", function(event) {
+      if (!cartApi || !cartApi.getCart().length) {
+        event.preventDefault();
+        return;
+      }
+
+      payTotalInput.value = totalNode.textContent;
+    });
+
+    renderCart();
+  </script>
+</body>
+</html>

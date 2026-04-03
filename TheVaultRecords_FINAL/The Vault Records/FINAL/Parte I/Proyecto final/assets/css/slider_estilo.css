@@ -1,0 +1,612 @@
+/* --- 1. RESET GLOBAL Y BASES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Elimina bordes blancos y scroll horizontal */
+    background: #000;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* --- 2. CABECERA Y NAVEGACIÓN SUPERIOR --- */
+.top-menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between; /* Separa Volver de Menú */
+    align-items: center;
+    padding: 0 5%; /* Margen lateral responsivo */
+    z-index: 5000;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+    pointer-events: none; /* Permite clics en el slider */
+}
+
+.nav-back, .menu-button {
+    pointer-events: auto; /* Habilita clics solo en los botones */
+}
+
+/* --- BARRA DE MENÚ SUPERIOR --- */
+.top-menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; /* Por encima de todo */
+    padding: 20px;
+    pointer-events: none; /* Permite clicks en la galería si el menú está cerrado */
+}
+
+/* El botón hamburguesa */
+.menu-button {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    z-index: 1100;
+    pointer-events: auto; /* Reactiva los clicks para el botón */
+}
+
+.menu-button span {
+    display: block;
+    height: 3px;
+    width: 28px;
+    background-color: #83b888;
+    transition: 0.3s;
+}
+
+/* El menú lateral */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background: #050b0c;
+    transition: 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    padding-top: 78px;
+    z-index: 1000;
+    pointer-events: auto; /* Permite interactuar con los links */
+}
+
+#menu-toggle:checked ~ .side-menu {
+    left: 0;
+}
+
+/* --- ENLACES DEL MENÚ --- */
+.menu-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-links a {
+    color: #cfcfcf;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    padding: 18px 35px;
+    text-transform: uppercase;
+    transition: 0.2s;
+}
+
+.menu-links a:hover {
+    color: #ffffff;
+}
+
+/* Ocultar checkbox */
+#menu-toggle {
+    display: none;
+}
+
+/* --- 3. CONTENEDOR DEL SLIDER --- */
+.slider-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    width: 700%; /* Para 7 artistas */
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.slide-unit {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.45); /* Mejora legibilidad del texto */
+}
+
+/* --- 4. TEXTO Y BOTONES DEL SLIDER --- */
+.slider-text {
+    position: absolute;
+    top: 55%; /* Ligeramente abajo para no chocar con la cabecera */
+    left: 5%;
+    transform: translateY(-50%);
+    z-index: 10;
+    max-width: 650px;
+}
+
+.color-slide {
+    color: #fff;
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 20px rgba(0,0,0,0.8);
+}
+
+.btn-slider {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 14px 40px;
+    border: 2px solid #83b888;
+    color: #83b888;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    transition: 0.4s;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(5px);
+}
+
+.btn-slider:hover {
+    background: #83b888;
+    color: #000;
+    box-shadow: 0 0 25px rgba(131, 184, 136, 0.5);
+}
+
+/* --- 5. CONTROLES (FLECHAS Y PUNTOS) --- */
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.3);
+    color: #83b888;
+    border: 1px solid rgba(131, 184, 136, 0.3);
+    font-size: 2rem;
+    padding: 20px 15px;
+    cursor: pointer;
+    z-index: 100;
+    transition: 0.3s;
+    backdrop-filter: blur(5px);
+}
+
+.slider-nav:hover {
+    background: rgba(131, 184, 136, 0.2);
+    color: #fff;
+}
+
+.prev { left: 20px; border-radius: 0 5px 5px 0; }
+.next { right: 20px; border-radius: 5px 0 0 5px; }
+
+.slider-indicators {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 100;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #83b888;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dot.active {
+    background: #83b888;
+    box-shadow: 0 0 10px #83b888;
+    transform: scale(1.2);
+}
+
+
+/* --- SECCIÓN NUEVOS INGRESOS --- */
+/* --- ESTILOS GLOBALES DE BOTONES --- */
+button, .btn-slider, .arrival-nav {
+    border-radius: 50px; /* Bordes redondos para todos los botones */
+}
+
+/* --- SECCIÓN NUEVOS INGRESOS --- */
+.new-arrivals {
+    padding: 100px 0;
+    background: #000;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.section-title {
+    color: #fff;
+    margin-bottom: 80px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 5px;
+}
+
+/* El wrapper ahora separa las flechas de la ventana de imágenes */
+.arrivals-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1500px; /* Aumentado para que las flechas quepan fuera */
+    margin: 0 auto;
+    position: relative;
+    padding: 0 20px;
+}
+
+.arrivals-window {
+    width: 85%; /* Reducido un poco para dar espacio a las flechas a los lados */
+    overflow: visible; /* Para que el disco no se corte al salir */
+}
+
+.arrivals-container {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+    justify-content: flex-end; /* Mantiene la franja a la derecha */
+    padding-right: 2%;
+}
+
+.product-card {
+    min-width: 33.333%; 
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- VINILO --- */
+.vinyl-wrapper {
+    position: relative;
+    width: 360px; 
+    height: 250px;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.album-cover {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    z-index: 5;
+    object-fit: cover;
+}
+
+.vinyl-disk {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    z-index: 1;
+    left: 60px;
+    transition: transform 0.6s ease-in-out;
+}
+
+.product-card:hover .vinyl-disk {
+    transform: translateX(85px) rotate(140deg);
+}
+
+/* --- NAVEGACIÓN (FLECHAS EXTERIORES) --- */
+.arrival-nav {
+    background: transparent;
+    color: #83b888;
+    border: 1px solid #83b888;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px; /* Bordes redondos */
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 100;
+    transition: 0.3s;
+    flex-shrink: 0; /* Evita que la flecha se aplaste */
+}
+
+.arrival-nav:hover {
+    background: #83b888;
+    color: #000;
+}
+
+/* Espaciado para que no toquen la ventana de imágenes */
+.prev-arr { margin-right: 20px; }
+.next-arr { margin-left: 20px; }
+
+/* --- BOTONES VER --- */
+.btn-slider {
+    border-radius: 50px;
+    background: transparent;
+    color: #83b888;
+    border: 1px solid #83b888;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+.btn-slider:hover {
+    background: #83b888;
+    color: #000;
+}
+
+/* --- SECCIÓN NUEVOS INGRESOS (CORREGIDA) --- */
+.new-arrivals {
+    padding: 100px 0;
+    background: #000;
+    text-align: center;
+    overflow: hidden;
+}
+
+.section-title {
+    color: #fff;
+    margin-bottom: 60px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.arrivals-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 20px;
+}
+
+.arrivals-window {
+    width: 100%;
+    overflow: hidden; /* Esto oculta los álbumes 4 y 5 correctamente */
+}
+
+.arrivals-container {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+    /* CAMBIO CLAVE: Alineación al inicio para ver Yellow Submarine primero */
+    justify-content: flex-start; 
+    width: 100%; 
+    transform: translateX(0); /* Asegura que empiece en el primer álbum */
+}
+
+.product-card {
+    /* Mantenemos el 33.333% para que se vean exactamente 3 */
+    min-width: 33.333%; 
+    flex: 0 0 33.333%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- ESTILO DE LOS DISCOS --- */
+.vinyl-wrapper {
+    position: relative;
+    width: 350px; 
+    height: 250px;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.album-cover {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    z-index: 5;
+    object-fit: cover;
+    box-shadow: 8px 0 20px rgba(0,0,0,0.6);
+}
+
+.vinyl-disk {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    z-index: 1;
+    left: 55px; 
+    transition: transform 0.6s ease-in-out;
+}
+
+.product-card:hover .vinyl-disk {
+    transform: translateX(85px) rotate(140deg);
+}
+
+/* --- BOTONES DE NAVEGACIÓN --- */
+.arrival-nav {
+    background: transparent;
+    color: #83b888;
+    border: 1px solid #83b888;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 100;
+    transition: 0.3s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 15px;
+}
+
+.arrival-nav:hover {
+    background: #83b888;
+    color: #000;
+}
+
+/* --- TEXTOS --- */
+.album-info p {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    margin: 5px 0;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.album-price {
+    color: #83b888 !important;
+    font-weight: bold;
+}
+
+.btn-slider {
+    border-radius: 50px;
+    background: transparent;
+    color: #83b888;
+    border: 1px solid #83b888;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+.btn-slider:hover {
+    background: #83b888;
+    color: #000;
+}
+
+/* Contenedor para asegurar el centrado total */
+.more-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px; /* Espacio respecto al slider */
+    padding-bottom: 40px;
+    padding-top: 20px;
+}
+
+.btn-more {
+    background: transparent;
+    color: #83b888;
+    border: 1px solid #83b888;
+    padding: 12px 60px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+
+    /* --- FORZAR MOVIMIENTO HACIA ARRIBA --- */
+    display: block;
+    margin: 0 auto; 
+    transform: translateY(-50px); /* Ajusta este número para subirlo más o menos */
+    position: relative; 
+    z-index: 10;
+}
+
+.btn-more:hover {
+    background: #83b888;
+    color: #000;
+    box-shadow: 0 0 20px rgba(131, 184, 136, 0.2);
+}
+
+/* --- SECCIÓN NOTICIAS (ESTILO CUADRÍCULA NYT) --- */
+/* Centrar el título de la sección */
+.news-section .section-title {
+    text-align: center;      /* Centra el texto */
+    width: 100%;             /* Asegura que ocupe todo el ancho para centrar */
+    margin-bottom: 60px;     /* Espacio antes de las noticias */
+}
+
+/* Centrar el botón "Mostrar Más" al final */
+.news-section .more-container {
+    display: flex;           /* Usamos flexbox para centrar elementos internos */
+    justify-content: center; /* Centra el botón horizontalmente */
+    margin-top: 60px;        /* Espacio después de las noticias */
+    width: 100%;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.news-link-wrapper {
+    text-decoration: none; /* Quita el subrayado del enlace */
+    display: block;
+}
+
+.news-image-container {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Esto hace que todas sean cuadradas. Usa 16 / 9 para rectangular */
+    overflow: hidden;
+    margin-bottom: 15px;
+    background: #111; /* Color de fondo por si la imagen no carga */
+}
+
+.news-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Recorta la imagen para que llene el espacio sin estirarse */
+    transition: transform 0.5s ease;
+}
+
+.news-card:hover .news-image {
+    transform: scale(1.05);
+}
+
+.news-artist {
+    color: #83b888;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.news-headline {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
+
+.news-meta {
+    color: #666;
+    font-size: 0.75rem;
+}
+
+/* Aplicar bordes redondos a los botones globales */
+.button-back {
+    border-radius: 50px;
+    display: inline-block;
+    padding: 12px 30px;
+    text-decoration: none;
+}

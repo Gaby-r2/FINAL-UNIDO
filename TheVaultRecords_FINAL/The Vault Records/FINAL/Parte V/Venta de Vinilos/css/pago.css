@@ -1,0 +1,303 @@
+:root {
+  --accent: #83b888;
+  --ink: #000;
+  --paper: #fff;
+  --line: 3px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Lato", sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.pagina {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--paper);
+}
+
+.barra-superior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 24px;
+  background: #000;
+  color: #fff;
+  border-bottom: var(--line) solid #000;
+}
+
+.titulo-superior,
+.boton-enlace,
+.titulo-seccion,
+.etiqueta-resumen,
+.etiqueta,
+.caja-total,
+.boton-principal,
+.boton-metodo,
+.titulo-modal,
+.boton-cerrar-modal {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+
+.titulo-superior,
+.boton-enlace {
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.titulo-superior {
+  margin: 0;
+}
+
+.boton-enlace {
+  transition: color 0.15s ease;
+}
+
+.boton-enlace:hover {
+  color: var(--accent);
+}
+
+.boton-enlace:focus-visible,
+.boton-principal:focus-visible,
+.entrada-metodo:focus-visible + .boton-metodo,
+.boton-cerrar-modal:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.principal-pago {
+  min-height: calc(100vh - 69px);
+}
+
+.panel-pago {
+  display: grid;
+  grid-template-columns: 30% minmax(0, 1fr);
+  min-height: inherit;
+}
+
+.resumen-pago {
+  padding: 30px;
+  border-right: var(--line) solid #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.titulo-seccion {
+  margin: 0;
+  font-size: 2.25rem;
+  line-height: 1.1;
+}
+
+.texto-seccion {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  padding-bottom: 9.2rem;
+}
+
+.etiqueta-resumen {
+  margin: 12px 0 0;
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+.campos-pago {
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.etiqueta {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.entrada-estilizada,
+.caja-total {
+  width: min(560px, 100%);
+  min-height: 56px;
+  padding: 0 18px;
+  border: 3px solid #000;
+  border-radius: 50px;
+  background: #fff;
+  font-size: 1rem;
+}
+
+.entrada-estilizada {
+  margin-bottom: 24px;
+}
+
+.entrada-estilizada:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.entrada-estilizada::placeholder {
+  color: #666;
+}
+
+.fila-metodo {
+  margin-top: 4px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.opcion-metodo {
+  position: relative;
+}
+
+.entrada-metodo {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.boton-metodo,
+.boton-principal,
+.boton-cerrar-modal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 12px 28px;
+  border: 3px solid var(--accent);
+  border-radius: 50px;
+  background: #000;
+  color: #fff;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.boton-metodo {
+  min-width: 220px;
+  user-select: none;
+}
+
+.boton-metodo:hover,
+.boton-principal:hover,
+.boton-cerrar-modal:hover {
+  background: var(--accent);
+}
+
+.entrada-metodo:checked + .boton-metodo {
+  background: var(--accent);
+}
+
+.caja-total {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  font-size: 1.5rem;
+}
+
+.contenedor-finalizar {
+  margin-top: 40px;
+}
+
+.boton-principal {
+  width: min(560px, 100%);
+}
+
+.fondo-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.65);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fondo-modal:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tarjeta-modal {
+  width: min(480px, 100%);
+  padding: 30px;
+  border: 3px solid #000;
+  background: #fff;
+  text-align: center;
+}
+
+.titulo-modal {
+  margin: 0;
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.boton-cerrar-modal {
+  width: min(220px, 100%);
+  margin-top: 24px;
+}
+
+@media (max-width: 900px) {
+  .barra-superior {
+    padding: 15px 18px;
+  }
+
+  .titulo-superior,
+  .boton-enlace {
+    font-size: 1.1rem;
+  }
+
+  .panel-pago {
+    grid-template-columns: 1fr;
+  }
+
+  .resumen-pago {
+    border-right: 0;
+    border-bottom: var(--line) solid #000;
+  }
+
+  .campos-pago {
+    padding: 24px;
+  }
+
+  .titulo-seccion {
+    font-size: 1.8rem;
+  }
+
+  .texto-seccion {
+    font-size: 1rem;
+  }
+
+  .entrada-estilizada,
+  .caja-total,
+  .boton-principal {
+    width: 100%;
+  }
+}

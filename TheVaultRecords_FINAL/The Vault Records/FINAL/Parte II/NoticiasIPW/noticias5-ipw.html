@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily News - The Vault Records</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <button class="menu-button" id="menuBtn" aria-label="Abrir menú">
+            <span></span><span></span><span></span>
+        </button>
+
+        <div class="menu-overlay" id="menuOverlay"></div>
+
+        <div class="side-menu" id="sideMenu">
+            <button class="close-btn" id="closeBtn" aria-label="Cerrar menú">&times;</button>
+            <div class="menu-links">
+                <a href="../../Parte I/Proyecto final/Gallery.html">INICIO</a>
+                <a href="../../Parte III/ActGrupal/proyecto.html">QUIENES SOMOS</a>
+                <a href="noticias5-ipw.html">NOTICIAS</a>
+                <a href="../../Parte IV/Proyecto Final/Productos_Artistas.html">ARTISTAS</a>
+                <a href="../../Parte III/ActGrupal/contato.html">CONTACTANOS</a>
+                <a href="../../Parte I/Proyecto final/faq.html">FAQs</a>
+            </div>
+        </div>
+
+        <div class="search-bar-container">
+            <div class="search-bar">
+                <input type="text" id="artistSearch" placeholder="Busca a tu artista favorito" onkeyup="filterArtists()">
+            </div>
+        </div>
+
+        <div class="nav-empty-right"></div>
+    </nav>
+
+    <header class="header-green">
+        <h1>DAILY NEWS</h1>
+    </header>
+
+    <main class="news-wrapper">
+        <div class="news-container" id="newsContainer">
+
+            <div class="news-item">
+                <div class="artist-header">
+                    <span class="artist-name">Taylor Swift</span>
+                    <button class="btn-open" onclick="openModal('taylor')">Ver</button>
+                </div>
+                <p class="news-excerpt">"Opalite" alcanza el #1 en Billboard Hot 100</p>
+            </div>
+
+            <div class="news-item">
+                <div class="artist-header">
+                    <span class="artist-name">Kanye West</span>
+                    <button class="btn-open" onclick="openModal('kanye')">Ver</button>
+                </div>
+                <p class="news-excerpt">BULLY: fecha oficial el 27 de marzo de 2026</p>
+            </div>
+
+            <div class="news-item">
+                <div class="artist-header">
+                    <span class="artist-name">Charli XCX</span>
+                    <button class="btn-open" onclick="openModal('charli')">Ver</button>
+                </div>
+                <p class="news-excerpt">"Wuthering Heights": #1 en UK y aclamación crítica</p>
+            </div>
+
+            <div class="news-item">
+                <div class="artist-header">
+                    <span class="artist-name">Tyler, The Creator</span>
+                    <button class="btn-open" onclick="openModal('tyler')">Ver</button>
+                </div>
+                <p class="news-excerpt">Gira mundial "Chromakopia" llega a su recta final</p>
+            </div>
+
+            <div class="news-item">
+                <div class="artist-header">
+                    <span class="artist-name">Cavetown</span>
+                    <button class="btn-open" onclick="openModal('cavetown')">Ver</button>
+                </div>
+                <p class="news-excerpt">"Running With Scissors": aclamación universal en Metacritic</p>
+            </div>
+
+            <div class="news-item">
+                <div class="artist-header">
+                    <span class="artist-name">The Beatles</span>
+                    <button class="btn-open" onclick="openModal('beatles')">Ver</button>
+                </div>
+                <p class="news-excerpt">Anthology restaurado en Disney+ y nuevo Anthology 4 con inéditos</p>
+            </div>
+
+            <div class="news-item">
+                <div class="artist-header">
+                    <span class="artist-name">Dua Lipa</span>
+                    <button class="btn-open" onclick="openModal('dua')">Ver</button>
+                </div>
+                <p class="news-excerpt">Actuación sorpresa en los BRIT Awards 2026 en Manchester</p>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-layout">
+                <div class="modal-image-container">
+                    <img id="modalImage" src="" alt="Noticia">
+                </div>
+                <div class="modal-text-content">
+                    <h2 id="modalTitle" class="modal-title"></h2>
+                    <div id="modalBody" class="modal-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        // ── DATOS DE NOTICIAS ─────────────────────────────────────────
+        const noticias = {
+            taylor: {
+                titulo: "Taylor Swift",
+                imagen: "imagenesnoticiasipw/tayloropalite.jpg",
+                contenido: `
+                    <p><strong>"Opalite"</strong>, el segundo sencillo del duodécimo álbum de Taylor Swift <em>The Life of a Showgirl</em> (2025), alcanzó el <strong>#1 en el Billboard Hot 100</strong> en febrero de 2026, convirtiéndose en su segundo número uno del mismo álbum desde <em>1989</em>.</p>
+                    <p>La canción, escrita junto a Max Martin y Shellback, es una metáfora sobre la felicidad como algo que puede crearse voluntariamente &mdash; igual que una "opalita", un ópalo sintético. Swift explicó que la inspiración vino del hecho de que el ópalo es la piedra de nacimiento de Travis Kelce.</p>
+                    <p>El video musical, estrenado el 6 de febrero en Apple Music y Spotify, está ambientado en los años 90 y cuenta con las actuaciones de Domhnall Gleeson, Greta Lee, Cillian Murphy, Lewis Capaldi y Graham Norton.</p>
+                    <p>Previamente, <em>The Life of a Showgirl</em> batió récords al vender más de 4 millones de unidades equivalentes en su primera semana en EE.UU.</p>
+                    <p>
+                        <a href="https://www.billboard.com/music/pop/taylor-swift-opalite-music-video-announced-release-date-1236173572/" target="_blank" rel="noopener">📰 Billboard – Anuncio del video de "Opalite"</a><br>
+                        <a href="https://en.wikipedia.org/wiki/Opalite_(song)" target="_blank" rel="noopener">📖 Wikipedia – "Opalite" (canción)</a><br>
+                        <a href="https://www.rollingstone.com/music/music-news/taylor-swift-opalite-music-video-1235511440/" target="_blank" rel="noopener">🎸 Rolling Stone – Reseña del video musical</a>
+                    </p>`
+            },
+            kanye: {
+                titulo: "Kanye West",
+                imagen: "imagenesnoticiasipw/kanyewestbully.jpg",
+                contenido: `
+                    <p>Tras años de retrasos, <strong>BULLY</strong>, el duodécimo álbum de estudio de Ye (Kanye West), tiene fecha de lanzamiento confirmada: <strong>27 de marzo de 2026</strong>, a través de su sello YZY en asociación con la compañía independiente Gamma.</p>
+                    <p>El álbum de <strong>13 canciones</strong> &mdash; entre ellas "Preacher Man", "Beauty and the Beast" y "Last Breath" &mdash; explora temas de <em>remordimiento, memoria, ego, fe y consecuencia</em>.</p>
+                    <p>El lanzamiento llega poco después de que Ye publicara en enero de 2026 un anuncio de página completa en <em>The Wall Street Journal</em> disculpándose por años de declaraciones antisemitas.</p>
+                    <p>Para apoyar el álbum, Ye anunció conciertos en el SoFi Stadium de Los Ángeles el 1 y 3 de abril de 2026, su primera presentación en la ciudad desde 2021.</p>
+                    <p>
+                        <a href="https://www.rollingstone.com/music/music-news/kanye-west-bully-release-date-signs-with-gamma-1235506094/" target="_blank" rel="noopener">📰 Rolling Stone – Fecha de lanzamiento de BULLY</a><br>
+                        <a href="https://en.wikipedia.org/wiki/Bully_(album)" target="_blank" rel="noopener">📖 Wikipedia – BULLY (álbum)</a><br>
+                        <a href="https://open.spotify.com/prerelease/4xFs0x8abwU3H9uNRPFRmE" target="_blank" rel="noopener">🎧 Spotify – Pre-save de BULLY</a>
+                    </p>`
+            },
+            charli: {
+                titulo: "Charli XCX",
+                imagen: "imagenesnoticiasipw/charlixcxw.jpg",
+                contenido: `
+                    <p>El <strong>13 de febrero de 2026</strong>, Charli XCX lanzó <strong>"Wuthering Heights"</strong>, su segundo álbum de bandas sonoras, creado para la adaptación cinematográfica de Emerald Fennell de la novela clásica de Emily Brontë, protagonizada por Margot Robbie y Jacob Elordi.</p>
+                    <p>El álbum de <strong>12 canciones</strong> fue descrito por la propia artista como una paleta sonora "elegante y brutal", radicalmente diferente al sonido electrónico de su disco anterior <em>Brat</em> (2024).</p>
+                    <p>El sencillo principal, <strong>"House"</strong>, cuenta con John Cale (The Velvet Underground) y fue destacado como una de las mejores canciones de la semana por <em>The Guardian</em> y <em>Stereogum</em>. El álbum debutó en el <strong>#1 del UK Albums Chart</strong> en su primera semana.</p>
+                    <p>La propia Charli comparó el sonido de <em>Wuthering Heights</em> con su álbum debut <em>True Romance</em> (2013), calificándolo de "hermano" de ese proyecto.</p>
+                    <p>
+                        <a href="https://en.wikipedia.org/wiki/Wuthering_Heights_(album)" target="_blank" rel="noopener">📖 Wikipedia – Wuthering Heights (álbum)</a><br>
+                        <a href="https://www.rollingstone.com/music/music-album-reviews/charli-xcx-wuthering-heights-album-review-1235515939/" target="_blank" rel="noopener">🎸 Rolling Stone – Reseña del álbum</a><br>
+                        <a href="https://open.spotify.com/album/4oniyB3TRFhjglVSqVgy9e" target="_blank" rel="noopener">🎧 Spotify – Escuchar el álbum</a>
+                    </p>`
+            },
+            tyler: {
+                titulo: "Tyler, The Creator",
+                imagen: "imagenesnoticiasipw/tylerchromakopia.jpg",
+                contenido: `
+                    <p>La <strong>Chromakopia: The World Tour</strong> de Tyler, the Creator es su séptima gira de conciertos como cabeza de cartel. Iniciada el 4 de febrero de 2025 en Minnesota, recorre Norteamérica, Europa, Oceanía y Asia, y concluye el <strong>31 de marzo de 2026</strong> en San Juan, Puerto Rico.</p>
+                    <p>La gira, que cuenta con Lil Yachty y Paris Texas como actos de apertura, apoya sus álbumes <em>Chromakopia</em> (2024) y <em>Don't Tap the Glass</em> (2025), lanzado en medio de la gira el 21 de julio de 2025.</p>
+                    <p>El espectáculo es reconocido por su producción teatral: Tyler diseñó el recinto con <strong>cuatro escenarios distintos</strong> que representan las etapas del álbum. Fanáticos y críticos lo han calificado como uno de los mejores conciertos de la década.</p>
+                    <p>Próximas fechas en Latinoamérica incluyen Ciudad de México el 25 de marzo y Tecate Pal Norte de Monterrey el 27 de marzo de 2026.</p>
+                    <p>
+                        <a href="https://en.wikipedia.org/wiki/Chromakopia:_The_World_Tour" target="_blank" rel="noopener">📖 Wikipedia – Chromakopia: The World Tour</a><br>
+                        <a href="https://chromakopiatour.com/" target="_blank" rel="noopener">🌐 Sitio oficial de la gira</a><br>
+                        <a href="https://www.ticketmaster.com/tyler-the-creator-tickets/artist/1744607" target="_blank" rel="noopener">🎟️ Ticketmaster – Entradas disponibles</a>
+                    </p>`
+            },
+            cavetown: {
+                titulo: "Cavetown",
+                imagen: "imagenesnoticiasipw/cavetownrunningwithsicors.jpg",
+                contenido: `
+                    <p>El <strong>16 de enero de 2026</strong>, Cavetown (nombre real Robin Skinner) lanzó <strong>"Running With Scissors"</strong>, su sexto álbum de estudio a través de Futures Music Group. Es el primer disco que Skinner graba en un estudio profesional con colaboradores externos.</p>
+                    <p>El álbum de <strong>13 canciones</strong> mezcla hyperpop, pop-punk, bedroom pop y dream pop, y explora temas de autodescubrimiento, la transición a la adultez y su experiencia como hombre trans. Recibió una puntuación de <strong>86/100 en Metacritic</strong>, indicando "aclamación universal".</p>
+                    <p>Entre los colaboradores destacan Chloe Moriondo, Orla Gartland y Ryan Raines. La canción <strong>"Cryptid"</strong> aborda directamente su experiencia como persona trans.</p>
+                    <p>En asociación con PLUS1, <strong>$1 de cada boleto vendido</strong> de su gira va a organizaciones LGBTQ+ locales. Su proyecto This Is Home ha recaudado más de $700,000 para comunidades queer.</p>
+                    <p>
+                        <a href="https://en.wikipedia.org/wiki/Running_with_Scissors_(Cavetown_album)" target="_blank" rel="noopener">📖 Wikipedia – Running With Scissors (álbum)</a><br>
+                        <a href="https://cavetown.bandcamp.com/album/running-with-scissors" target="_blank" rel="noopener">🎵 Bandcamp – Escuchar y comprar</a><br>
+                        <a href="https://open.spotify.com/album/64PgXU23E9lh3upKqECPIr" target="_blank" rel="noopener">🎧 Spotify – Escuchar el álbum</a>
+                    </p>`
+            },
+            beatles: {
+                titulo: "The Beatles",
+                imagen: "imagenesnoticiasipw/thebeatles.jpg",
+                contenido: `
+                    <p>En noviembre de 2025, para celebrar el <strong>30 aniversario</strong> del proyecto original, Apple Corps lanzó una versión restaurada y remasterizada de <em>The Beatles Anthology</em>, disponible en <strong>Disney+</strong> desde el 26 de noviembre de 2025.</p>
+                    <p>La serie fue restaurada por el equipo de Peter Jackson (Park Road Post) y expandida con un <strong>nuevo Episodio 9</strong> con imágenes inéditas de Paul McCartney, George Harrison y Ringo Starr trabajando juntos en los años 90.</p>
+                    <p>Se lanzó también <em>The Anthology Collection</em>, una caja con los álbumes Anthology 1, 2 y 3 remasterizados por Giles Martin, más el nuevo <strong>Anthology 4</strong> con <strong>13 grabaciones inéditas</strong>, incluyendo demos tempranos y tomas de estudio.</p>
+                    <p>De cara a 2028, Sam Mendes dirigirá <em>The Beatles — A Four-Film Cinematic Event</em>, cuatro biopics individuales sobre cada integrante del grupo.</p>
+                    <p>
+                        <a href="https://www.thebeatles.com" target="_blank" rel="noopener">🌐 Sitio oficial – The Beatles</a><br>
+                        <a href="https://www.rollingstone.com/music/music-features/beatles-anthology-documentary-interview-1235471257/" target="_blank" rel="noopener">🎸 Rolling Stone – Análisis del Anthology restaurado</a><br>
+                        <a href="https://www.disneyplus.com/explore/articles/the-beatles-anthology-documentary" target="_blank" rel="noopener">📺 Disney+ – Ver la serie</a>
+                    </p>`
+            },
+            dua: {
+                titulo: "Dua Lipa",
+                imagen: "imagenesnoticiasipw/duabritawards.jpg",
+                contenido: `
+                    <p>El <strong>28 de febrero de 2026</strong>, Dua Lipa protagonizó uno de los momentos más comentados de los <strong>BRIT Awards 2026</strong>, celebrados por primera vez fuera de Londres, en el Co-op Live Arena de Manchester.</p>
+                    <p>La cantante irrumpió como invitada sorpresa durante la actuación homenaje de Mark Ronson, quien recibió el premio <em>Outstanding Contribution to Music</em>. Descendió desde el techo sobre una gigantesca bola de discoteca para interpretar juntos <strong>"Dance the Night"</strong> y <strong>"Electricity"</strong>.</p>
+                    <p>Tras el evento, Lipa publicó en Instagram: <em>"What an honour to join my dear friend Mark Ronson on stage... Mark, you're a true trailblazer. Your talent, heart, and passion inspire us all."</em></p>
+                    <p>La noche también incluyó apariciones de Ghostface Killah y los Dap-Kings en un tributo especial a Amy Winehouse.</p>
+                    <p>
+                        <a href="https://www.nme.com/news/music/watch-dua-lipa-and-ghostface-killah-join-mark-ronson-for-career-spanning-medley-at-brits-2026-3932084" target="_blank" rel="noopener">📰 NME – Cobertura completa de los BRIT Awards 2026</a><br>
+                        <a href="https://www.rollingstone.co.uk/music/news/watch-mark-ronson-pay-tribute-to-amy-winehouse-at-brit-awards-2026-58909/" target="_blank" rel="noopener">🎸 Rolling Stone UK – Video del homenaje</a>
+                    </p>`
+            }
+        };
+
+        // ── MENÚ LATERAL ──────────────────────────────────────────────
+        const menuBtn     = document.getElementById('menuBtn');
+        const sideMenu    = document.getElementById('sideMenu');
+        const closeBtn    = document.getElementById('closeBtn');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        function openMenu() {
+            sideMenu.classList.add('open');
+            menuOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            sideMenu.classList.remove('open');
+            menuOverlay.classList.remove('open');
+            document.body.style.overflow = 'auto';
+        }
+
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (sideMenu.classList.contains('open')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        closeBtn.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+
+        // ── MODAL DE NOTICIAS ─────────────────────────────────────────
+        const modal      = document.getElementById('myModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody  = document.getElementById('modalBody');
+        const modalImage = document.getElementById('modalImage');
+        const hashToNews = {
+            '#taylor': 'taylor',
+            '#kanye': 'kanye',
+            '#charli': 'charli',
+            '#tyler': 'tyler',
+            '#cavetown': 'cavetown',
+            '#beatles': 'beatles',
+            '#dua': 'dua'
+        };
+
+        function syncNewsHash(key) {
+            const nextUrl = `${window.location.pathname}${window.location.search}#${key}`;
+            if (window.location.hash.toLowerCase() !== `#${key}`) {
+                history.replaceState(null, '', nextUrl);
+            }
+        }
+
+        function clearNewsHash() {
+            if (window.location.hash) {
+                history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+            }
+        }
+
+        function openModal(key, syncHash = true) {
+            const data = noticias[key];
+
+            if (!data) {
+                return;
+            }
+
+            modalTitle.innerText         = data.titulo;
+            modalBody.innerHTML          = data.contenido;
+            modalImage.src               = data.imagen;
+            modalImage.alt               = `Noticia de ${data.titulo}`;
+            modal.style.display          = 'flex';
+            document.body.style.overflow = 'hidden';
+
+            if (syncHash) {
+                syncNewsHash(key);
+            }
+        }
+
+        function closeModal(clearHash = true) {
+            modal.style.display          = 'none';
+            document.body.style.overflow = 'auto';
+            modalImage.src               = '';
+
+            if (clearHash) {
+                clearNewsHash();
+            }
+        }
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) closeModal();
+        });
+
+        window.addEventListener('hashchange', function() {
+            const key = hashToNews[window.location.hash.toLowerCase()];
+
+            if (key) {
+                openModal(key, false);
+            } else if (modal.style.display === 'flex') {
+                closeModal(false);
+            }
+        });
+
+        // ── BUSCADOR ──────────────────────────────────────────────────
+        function filterArtists() {
+            const input = document.getElementById('artistSearch').value.toLowerCase();
+            const items = document.getElementsByClassName('news-item');
+            for (let i = 0; i < items.length; i++) {
+                const name = items[i].getElementsByClassName('artist-name')[0].innerText.toLowerCase();
+                items[i].style.display = name.includes(input) ? '' : 'none';
+            }
+        }
+
+        const initialNewsKey = hashToNews[window.location.hash.toLowerCase()];
+        if (initialNewsKey) {
+            openModal(initialNewsKey, false);
+        }
+
+    </script>
+</body>
+</html>

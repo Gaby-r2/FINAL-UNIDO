@@ -1,0 +1,262 @@
+/* --- 1. GLOBAL RESET & FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* --- 2. HERO / VIDEO BACKGROUND (Mismo estilo que Login) --- */
+header.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* Asegura que cubra al menos la pantalla completa */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinea al principio para permitir scroll si es necesario */
+    overflow-y: auto; /* Permite scroll vertical si las 10 preguntas exceden la pantalla */
+}
+
+.bg-video {
+    position: fixed; /* Fija el video para que no se mueva al hacer scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Capa oscura sobre el video (Mismo estilo que Login) */
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Oscurece el video un 50% */
+    z-index: 2;
+}
+
+/* --- 4. CONTENEDOR DE FAQS (Mismo estilo de transparencia que Login) --- */
+.faq-content-wrapper {
+    position: relative;
+    z-index: 10; /* Por encima del video y el overlay */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 120px 20px 60px; /* Espacio superior para el menú/botón */
+}
+
+.faq-container {
+    width: 100%;
+    max-width: 800px; /* Ancho máximo para legibilidad */
+    
+    /* Efecto de "cuadro" del Login aplicado aquí si prefieres unificar más */
+    /* background: rgba(0, 0, 0, 0.7); 
+    backdrop-filter: blur(15px); 
+    padding: 40px;
+    border: 1px solid rgba(131, 184, 136, 0.2);
+    border-radius: 15px; */
+}
+
+.faq-title {
+    color: #83b888;
+    text-align: center;
+    font-size: 2.2rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(131, 184, 136, 0.5);
+}
+
+/* --- 5. ACORDEONES (DETAILS) CON ESTILO "THE VAULT" --- */
+.faq-item {
+    background: rgba(255, 255, 255, 0.05); /* Muy traslúcido */
+    backdrop-filter: blur(5px); /* Desenfoque detrás de cada pregunta */
+    margin-bottom: 15px;
+    border: 1px solid rgba(131, 184, 136, 0.15);
+    border-radius: 5px;
+    transition: 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: rgba(131, 184, 136, 0.5);
+    background: rgba(131, 184, 136, 0.03);
+}
+
+.faq-question {
+    padding: 20px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+    cursor: pointer;
+    list-style: none; /* Quita la flecha por defecto */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+/* Quitar flecha en Safari/Chrome */
+.faq-question::-webkit-details-marker {
+    display: none;
+}
+
+/* Indicador personalizado (+) */
+.faq-question::after {
+    content: '+';
+    color: #83b888;
+    font-size: 1.4rem;
+    transition: transform 0.3s ease;
+}
+
+/* Cuando el acordeón está abierto */
+.faq-item[open] {
+    border-color: #83b888;
+    background: rgba(131, 184, 136, 0.08);
+}
+
+.faq-item[open] .faq-question::after {
+    content: '−'; /* Signo de menos */
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 20px 20px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+/* --- 6. FORM FOOTER (Estilo Login) --- */
+.faq-footer {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.contact-prompt {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.link-text {
+    font-size: 0.75rem;
+    color: #83b888;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+.link-text:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 768px) {
+    .nav-back { top: 20px; left: 20px; }
+    .faq-title { font-size: 1.6rem; }
+    .faq-question { font-size: 0.85rem; padding: 15px; }
+    .faq-content-wrapper { padding-top: 100px; }
+}
+
+/* --- BARRA DE MENÚ SUPERIOR --- */
+.top-menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; /* Por encima de todo */
+    padding: 20px;
+    pointer-events: none; /* Permite clicks en la galería si el menú está cerrado */
+}
+
+/* El botón hamburguesa */
+.menu-button {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    z-index: 1100;
+    pointer-events: auto; /* Reactiva los clicks para el botón */
+}
+
+.menu-button span {
+    display: block;
+    height: 3px;
+    width: 28px;
+    background-color: #83b888;
+    transition: 0.3s;
+}
+
+/* El menú lateral */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background: #050b0c;
+    transition: 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    padding-top: 78px;
+    z-index: 1000;
+    pointer-events: auto; /* Permite interactuar con los links */
+}
+
+#menu-toggle:checked ~ .side-menu {
+    left: 0;
+}
+
+/* --- ENLACES DEL MENÚ --- */
+.menu-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-links a {
+    color: #cfcfcf;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    padding: 18px 35px;
+    text-transform: uppercase;
+    transition: 0.2s;
+}
+
+.menu-links a:hover {
+    color: #ffffff;
+}
+
+/* Ocultar checkbox */
+#menu-toggle {
+    display: none;
+}
+
+button, .button-back, .btn-slider, .arrival-nav { border-radius: 50px; }

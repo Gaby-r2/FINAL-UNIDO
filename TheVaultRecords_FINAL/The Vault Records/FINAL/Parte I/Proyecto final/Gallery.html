@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Gallery | The Vault Records</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="icon" href="images/branding/icon2.png" type="image/png" sizes="45x45">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/slider_estilo.css">
+</head>
+
+<body class="info-page">
+        <nav>
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-button">
+                <span></span><span></span><span></span>
+            </label>
+            
+            <div class="side-menu">
+                <div class="menu-links">
+                    <a href="Gallery.html">INICIO</a>
+                    <a href="../../Parte III/ActGrupal/proyecto.html">QUIENES SOMOS</a>
+                    <a href="../../Parte II/NoticiasIPW/noticias5-ipw.html">NOTICIAS</a>
+                    <a href="../../Parte IV/Proyecto Final/Productos_Artistas.html">ARTISTAS</a>
+                    <a href="../../Parte III/ActGrupal/contato.html">CONTACTANOS</a>
+                    <a href="faq.html">FAQs</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="info-section">
+        
+        <div class="slider-container">
+            <div class="slider">
+                
+                <div class="slide-unit">
+                    <img src="images/artists/ts.png" class="slide" alt="Taylor Swift">
+                    <div class="slider-text">
+                        <h2 class="color-slide">NUEVO ÁLBUM DISPONIBLE</h2>
+                        <h2 class="color-slide">TAYLOR SWIFT</h2>
+                        <footer>
+                            <a href="../../Parte IV/Proyecto Final/Productos_Artistas.html#taylorswift" class="btn-slider">VER PERFIL</a>
+                        </footer>
+                    </div>
+                </div>
+
+                <div class="slide-unit">
+                    <img src="images/artists/ye.png" class="slide" alt="Kanye West">
+                    <div class="slider-text">
+                        <h2 class="color-slide">PRÓXIMAMENTE</h2>
+                        <h2 class="color-slide">BULLY</h2>
+                        <footer>
+                            <a href="../../Parte IV/Proyecto Final/Productos_Artistas.html#kanyewest" class="btn-slider">VER PERFIL</a>
+                        </footer>
+                    </div>
+                </div>
+
+                <div class="slide-unit">
+                    <img src="images/artists/dua.png" class="slide" alt="Charli XCX">
+                    <div class="slider-text">
+                        <h2 class="color-slide">LANZAMIENTOS EXCLUSIVOS</h2>
+                        <h2 class="color-slide">DUA LIPA</h2>
+                        <footer>
+                            <a href="../../Parte IV/Proyecto Final/Productos_Artistas.html#dualipa" class="btn-slider">VER PERFIL</a>
+                        </footer>
+                    </div>
+                </div>
+
+                <div class="slide-unit">
+                    <img src="images/artists/cv.png" class="slide" alt="Dua Lipa">
+                    <div class="slider-text">
+                        <h2 class="color-slide">NUEVA MÚSICA</h2>
+                        <h2 class="color-slide">CAVETOWN</h2>
+                        <footer>
+                            <a href="../../Parte IV/Proyecto Final/Productos_Artistas.html#cavetown" class="btn-slider">VER PERFIL</a>
+                        </footer>
+                    </div>
+                </div>
+
+                <div class="slide-unit">
+                    <img src="images/artists/bt.png" class="slide" alt="Cavetown">
+                    <div class="slider-text">
+                        <h2 class="color-slide">COLECCIÓN COMPLETA</h2>
+                        <h2 class="color-slide">THE BEATLES</h2>
+                        <footer>
+                            <a href="../../Parte IV/Proyecto Final/Productos_Artistas.html#thebeatles" class="btn-slider">VER PERFIL</a>
+                        </footer>
+                    </div>
+                </div>
+
+                <div class="slide-unit">
+                    <img src="images/artists/ts2.png" class="slide" alt="The Beatles">
+                    <div class="slider-text">
+                        <h2 class="color-slide">TODAS LAS VERSIONES DISPONIBLES</h2>
+                        <h2 class="color-slide">THE LIFE OF A SHOWGIRL</h2>
+                        <footer>
+                            <a href="../../Parte IV/Proyecto Final/Productos_Artistas.html#taylorswift" class="btn-slider">VER PERFIL</a>
+                        </footer>
+                    </div>
+                </div>
+
+                <div class="slide-unit">
+                    <img src="images/artists/tc.png" class="slide" alt="Tyler The Creator">
+                    <div class="slider-text">
+                        <h2 class="color-slide">TYLER, THE CREATOR</h2>
+                        <footer>
+                            <a href="../../Parte IV/Proyecto Final/Productos_Artistas.html#tyler" class="btn-slider">VER PERFIL</a>
+                        </footer>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="slider-nav prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="slider-nav next" onclick="moveSlide(1)">&#10095;</button>
+
+            <div class="slider-indicators">
+                <span class="dot active" onclick="currentSlidePos(0)"></span>
+                <span class="dot" onclick="currentSlidePos(1)"></span>
+                <span class="dot" onclick="currentSlidePos(2)"></span>
+                <span class="dot" onclick="currentSlidePos(3)"></span>
+                <span class="dot" onclick="currentSlidePos(4)"></span>
+                <span class="dot" onclick="currentSlidePos(5)"></span>
+                <span class="dot" onclick="currentSlidePos(6)"></span>
+            </div>
+        </div>
+    </main>
+
+<section class="new-arrivals">
+    <h2 class="section-title">NUEVOS INGRESOS</h2>
+    
+    <div class="arrivals-wrapper">
+        <button class="arrival-nav" onclick="moveArrivals(-1)">&#10094;</button>
+        
+        <div class="arrivals-window">
+            <div class="arrivals-container" id="arrivals-slider">
+                <div class="product-card">
+                    <div class="vinyl-wrapper">
+                        <img src="images/albums/yellow-submarine.jpg" alt="yellow-submarine" class="album-cover">
+                        <div class="vinyl-disk" style="background: radial-gradient(circle, #f3e5ab 10%, #d4af37 100%);"></div>
+                    </div>
+                    <div class="album-info">
+                        <p class="album-name">YELLOW SUBMARINE</p>
+                        <p class="album-price">$35.00</p>
+                    </div>
+                    <button class="btn-slider" onclick="window.location.href='../../Parte IV/Proyecto Final/Productos/Yellow Submarine.html'">VER</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="vinyl-wrapper">
+                        <img src="images/albums/revolver.jpg" alt="revolver" class="album-cover">
+                        <div class="vinyl-disk" style="background: radial-gradient(circle, #555 10%, #111 100%);"></div>
+                    </div>
+                    <div class="album-info">
+                        <p class="album-name">REVOLVER</p>
+                        <p class="album-price">$40.00</p>
+                    </div>
+                    <button class="btn-slider" onclick="window.location.href='../../Parte IV/Proyecto Final/Productos/Revolver.html'">VER</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="vinyl-wrapper">
+                        <img src="images/albums/tloas_1.png" alt="tloas" class="album-cover">
+                        <div class="vinyl-disk" style="background: radial-gradient(circle, #30D5C8 10%, #008080 100%);"></div>
+                    </div>
+                    <div class="album-info">
+                        <p class="album-name">THE LIFE OF A SHOWGIRL</p>
+                        <p class="album-price">$45.00</p>
+                    </div>
+                    <button class="btn-slider" onclick="window.location.href='../../Parte IV/Proyecto Final/Productos/The Life of a Showgirl.html'">VER</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="vinyl-wrapper">
+                        <img src="images/albums/abbey-road.jpg" alt="abbey-road" class="album-cover">
+                        <div class="vinyl-disk" style="background: radial-gradient(circle, #6ea9e5 10%, #2c7ee1 100%);"></div>
+                    </div>
+                    <div class="album-info">
+                        <p class="album-name">ABBEY ROAD</p>
+                        <p class="album-price">$38.00</p>
+                    </div>
+                    <button class="btn-slider" onclick="window.location.href='../../Parte IV/Proyecto Final/Productos/Abbey Road.html'">VER</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="vinyl-wrapper">
+                        <img src="images/albums/tloas.avif" alt="tloas-deluxe" class="album-cover">
+                        <div class="vinyl-disk" style="background: radial-gradient(circle, #d56c30 10%, #874703 100%);"></div>
+                    </div>
+                    <div class="album-info">
+                        <p class="album-name">THE LIFE OF A SHOWGIRL (DELUXE)</p>
+                        <p class="album-price">$55.00</p>
+                    </div>
+                    <button class="btn-slider" onclick="window.location.href='../../Parte IV/Proyecto Final/Productos/The Life of a Showgirl.html'">VER</button>
+                </div>
+
+            </div>
+        </div>
+        <button class="arrival-nav" onclick="moveArrivals(1)">&#10095;</button>
+    </div>
+</section>
+
+</section>
+    </div> <div class="more-container">
+        <button class="btn-more" onclick="window.location.href='../../Parte IV/Proyecto Final/Productos_Artistas.html'">MOSTRAR MÁS</button>
+    </div>
+</section>
+
+
+    <section class="news-section">
+        <h2 class="section-title">NOTICIAS</h2>
+
+        <div class="news-grid">
+            <div class="news-card">
+                <a href="../../Parte II/NoticiasIPW/noticias5-ipw.html#taylor" class="news-link-wrapper">
+                    <div class="news-image-container">
+                        <img src="images/news/ts.webp" alt="Taylor Swift" class="news-image">
+                    </div>
+                    <div class="news-text-content">
+                        <h3 class="news-artist">TAYLOR SWIFT</h3>
+                        <p class="news-headline">“Opalite” alcanza el #1 en Billboard</p>
+                        <p class="news-meta">5 MIN READ</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="news-card">
+                <a href="../../Parte II/NoticiasIPW/noticias5-ipw.html#kanye" class="news-link-wrapper">
+                    <div class="news-image-container">
+                        <img src="images/news/ye.jpg" alt="Kanye West" class="news-image">
+                    </div>
+                    <div class="news-text-content">
+                        <h3 class="news-artist">KANYE WEST</h3>
+                        <p class="news-headline">Expectativa por el álbum “BULLY”</p>
+                        <p class="news-meta">4 MIN READ</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="news-card">
+                <a href="../../Parte II/NoticiasIPW/noticias5-ipw.html#charli" class="news-link-wrapper">
+                    <div class="news-image-container">
+                        <img src="images/news/xcx.avif" alt="Charli XCX" class="news-image">
+                    </div>
+                    <div class="news-text-content">
+                        <h3 class="news-artist">CHARLI XCX</h3>
+                        <p class="news-headline">Nuevo álbum “Wuthering Heights”</p>
+                        <p class="news-meta">6 MIN READ</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="more-container">
+            <button class="btn-more" onclick="window.location.href='../../Parte II/NoticiasIPW/noticias5-ipw.html'">MOSTRAR MÁS</button>
+        </div>
+    </section>
+
+    <script>
+        let currentSlide = 0;
+        const slider = document.querySelector('.slider');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = 7;
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentSlide * (100 / totalSlides)}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function moveSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function currentSlidePos(pos) {
+            currentSlide = pos;
+            updateSlider();
+        }
+
+        // Auto-play cada 6 segundos
+        setInterval(() => moveSlide(1), 6000);
+
+        // New-arrivals
+        let currentArrivalPos = 0;
+
+        function moveArrivals(direction) {
+            const slider = document.getElementById('arrivals-slider');
+            const totalItems = 5;
+            const visibleItems = 3;
+            const maxPos = totalItems - visibleItems; // Solo puede moverse 2 veces
+
+            currentArrivalPos += direction;
+
+            if (currentArrivalPos < 0) currentArrivalPos = 0;
+            if (currentArrivalPos > maxPos) currentArrivalPos = maxPos;
+
+            // Movemos un 33.33% por cada clic
+            slider.style.transform = `translateX(-${currentArrivalPos * 33.333}%)`;
+        }
+    </script>
+
+</body>
+</html>
