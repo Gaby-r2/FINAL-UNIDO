@@ -1,0 +1,444 @@
+/* ==========================================================================
+   1. IMPORTACIÓN DE FUENTES Y CONFIGURACIÓN BASE
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;700;900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    background-color: #000;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Tipografías de Títulos y Botones */
+h1, h2, h3, h4, h5, h6,
+.artist-name, .btn-open, .news-excerpt,
+.modal-title, .menu-links a,
+.close-btn, .close-modal {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Tipografía de cuerpo de texto */
+body, p, input, .modal-body, .search-bar input {
+    font-family: 'Lato', sans-serif;
+}
+
+/* ==========================================================================
+   2. NAVBAR Y MENÚ LATERAL (SIDE-MENU)
+   ========================================================================== */
+
+.navbar {
+    margin: 0;
+    background-color: #000;
+    padding: 12px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #222;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Botón hamburguesa */
+.menu-button {
+    flex: 1;                  /* ocupa el mismo espacio que nav-empty-right */
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+    z-index: 5002;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.menu-button span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: #83b888;
+    transition: 0.3s;
+}
+
+/* Overlay oscuro que cubre la página al abrir el menú */
+.menu-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 5000;
+}
+
+.menu-overlay.open {
+    display: block;
+}
+
+/* Panel lateral */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background: #050b0c;
+    display: flex;
+    flex-direction: column;
+    padding-top: 78px;
+    transition: left 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+    z-index: 5001;
+}
+
+/* Clase .open activa el panel */
+.side-menu.open {
+    left: 0;
+}
+
+/* Botón cerrar (X) — oculto */
+.close-btn {
+    display: none;
+}
+
+/* Enlaces del menú lateral */
+.menu-links a {
+    color: #cfcfcf;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    padding: 18px 35px;
+    display: block;
+    text-transform: uppercase;
+    transition: 0.2s;
+}
+
+.menu-links a:hover {
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   3. BUSCADOR CENTRADO (ESTILO PÍLDORA)
+   ========================================================================== */
+.search-bar-container {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar {
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 5px 25px;
+    width: 100%;
+    max-width: 450px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    font-family: 'Lato', sans-serif;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.nav-empty-right {
+    flex: 1;
+    display: block;
+}
+
+/* ==========================================================================
+   4. HEADER "DAILY NEWS"
+   ========================================================================== */
+.header-green {
+    background-color: #83b888;
+    padding: 40px 45px;
+}
+
+.header-green h1 {
+    margin: 0;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: -1px;
+}
+
+/* ==========================================================================
+   5. CONTENEDOR DE NOTICIAS Y SCROLLBAR
+   ========================================================================== */
+.news-wrapper {
+    padding: 20px 10%;
+}
+
+.news-container {
+    padding: 20px 50px 20px 0; /* Espacio para separar del scrollbar */
+    height: 600px;
+    overflow-y: auto;
+}
+
+.news-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.news-container::-webkit-scrollbar-thumb {
+    background: #83b888;
+    border-radius: 10px;
+}
+
+.news-item {
+    margin-bottom: 40px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 25px;
+}
+
+.artist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.artist-name {
+    font-size: 1.6rem;
+    color: #83b888;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.news-excerpt {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #eee;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   6. BOTONES INTERACTIVOS (NEGRO -> VERDE)
+   ========================================================================== */
+.btn-open {
+    background-color: transparent;
+    color: #83b888;
+    border: 2px solid #83b888;
+    padding: 10px 24px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-open:hover {
+    background-color: #83b888;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(131, 184, 136, 0.4);
+}
+
+/* ==========================================================================
+   7. MODAL / POP-OUT (NOTICIA EXTENDIDA)
+   ========================================================================== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.95);
+    z-index: 5003;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: #111;
+    padding: 40px;
+    border: 1px solid #333;
+    width: 90%;
+    max-width: 850px;
+    max-height: 85vh;        /* nunca supera el 85% de la pantalla */
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px; right: 20px;
+    color: #83b888;
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.modal-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    overflow-y: auto;
+    padding-right: 8px;
+    margin-top: 20px;        /* separa el contenido y la scrollbar del botón X */
+}
+
+/* Scrollbar del modal */
+.modal-layout::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-layout::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 10px;
+}
+
+.modal-layout::-webkit-scrollbar-thumb {
+    background: #83b888;
+    border-radius: 10px;
+}
+
+.modal-image-container img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid #83b888;
+}
+
+.modal-title {
+    color: #83b888;
+    font-weight: 900;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.modal-body {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #ccc;
+}
+
+.modal-body strong {
+    color: #83b888;
+}
+
+.modal-body a {
+    color: #83b888;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 4px;
+    transition: opacity 0.2s ease;
+}
+
+.modal-body a:hover {
+    opacity: 0.75;
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   8. GRID ESTÁNDAR DE IMÁGENES
+   ========================================================================== */
+
+/* Grid general reutilizable para galerías o conjuntos de imágenes */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* Cada celda del grid */
+.image-grid-item {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 2px solid #222;
+    background-color: #111;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.image-grid-item:hover {
+    border-color: #83b888;
+    transform: scale(1.02);
+}
+
+/* La imagen dentro de cada celda siempre llena y recorta igual */
+.image-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Variante: 3 columnas fijas */
+.image-grid--3col {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* Variante: 4 columnas fijas */
+.image-grid--4col {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Imagen del modal — mismas reglas base */
+.modal-image-container {
+    flex-shrink: 0;
+    width: 260px;
+}
+
+.modal-image-container img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+    border: 2px solid #83b888;
+    display: block;
+}
+
+/* ==========================================================================
+   9. RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .modal-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+    .modal-image-container {
+        width: 100%;
+        max-width: 280px;
+    }
+    .navbar {
+        padding: 10px 15px;
+    }
+    .news-container {
+        padding: 20px 0;
+    }
+    .image-grid--3col,
+    .image-grid--4col {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .image-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}

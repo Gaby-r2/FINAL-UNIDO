@@ -1,0 +1,296 @@
+:root{
+  --bg-main: #1A1A1B;
+  --text-main: #FFFFFF;
+  --detail: #83b888;
+  --action: #ffd235;
+  --card-dark: #222325;
+  --card-light: #f6f6f6;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background:
+    radial-gradient(circle at top left, rgba(131,184,136,0.16), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(255,210,53,0.10), transparent 22%),
+    var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+}
+
+/* =========================
+   🔥 TOPBAR
+========================= */
+.topbar{
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 28px;
+  position: relative;
+  width: 100%;
+  height: 60px
+  ;
+}
+
+/* título centrado */
+.topbar h1{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22.4px;
+  font-weight: 700;
+  color: white;
+}
+
+/* =========================
+   🔥 MENÚ HAMBURGUESA IZQUIERDA
+========================= */
+.menu-nav{
+  position: absolute;
+  left: 20px;
+  z-index: 1100;
+}
+
+/* ocultar checkbox */
+#menu-toggle{
+  display: none;
+}
+
+/* botón hamburguesa */
+.menu-button{
+  position: relative;
+  z-index: 1101;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.menu-button span{
+  display: block;
+  width: 28px;
+  height: 3px;
+  background-color: #83b888;
+  transition: 0.3s ease;
+}
+
+/* =========================
+   🔥 MENÚ LATERAL (FIXED)
+========================= */
+.side-menu{
+  position: fixed;
+  top: 0;
+  left: -300px; /* oculto */
+  width: 300px;
+  height: 100vh;
+  background: #050b0c;
+  display: flex;
+  flex-direction: column;
+  padding-top: 78px;
+  transition: left 0.4s ease;
+  z-index: 1000;
+}
+
+/* mostrar menú */
+#menu-toggle:checked ~ .side-menu{
+  left: 0;
+}
+
+/* botón cerrar */
+.close-btn{
+  display: none;
+}
+
+/* links */
+.menu-links{
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-links a{
+  color: #cfcfcf;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  padding: 18px 35px;
+  text-transform: uppercase;
+  transition: 0.2s;
+}
+
+.menu-links a:hover{
+  color: #ffffff;
+}
+
+/* =========================
+   CONTENIDO
+========================= */
+.contact-page{
+  max-width: 1250px;
+  margin: 40px auto;
+  padding: 0 20px 40px;
+}
+
+.contact-card{
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+/* =========================
+   LADO IZQUIERDO
+========================= */
+.contact-info{
+  background: linear-gradient(180deg, rgba(131,184,136,0.18), rgba(131,184,136,0.08));
+  border: 2px solid rgba(131,184,136,0.45);
+  border-radius: 24px;
+  padding: 34px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.20);
+}
+
+.tag{
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background-color: rgba(255,210,53,0.14);
+  color: var(--action);
+  border: 1px solid rgba(255,210,53,0.35);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.contact-info h2{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 64px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.intro{
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.7;
+  color: #eaeaea;
+  margin-bottom: 28px;
+  max-width: 500px;
+}
+
+.info-list{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 34px;
+}
+
+.info-item{
+  background-color: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-left: 4px solid var(--detail);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.info-title{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  color: var(--detail);
+}
+
+.info-text{
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* =========================
+   LADO DERECHO (FORM)
+========================= */
+.form-box{
+  background-color: var(--card-light);
+  border-radius: 24px;
+  padding: 34px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.20);
+}
+
+.form-box h3{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  color: var(--bg-main);
+  margin-bottom: 22px;
+}
+
+.form-group{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.form-group label{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  color: var(--bg-main);
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea{
+  padding: 14px 16px;
+  border: 2px solid rgba(26,26,27,0.18);
+  border-radius: 14px;
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+  border-color: var(--detail);
+  box-shadow: 0 0 0 4px rgba(131,184,136,0.18);
+}
+
+.form-group textarea{
+  resize: vertical;
+  min-height: 170px;
+}
+
+.send-btn{
+  width: 100%;
+  min-height: 56px;
+  padding: 12px 28px;
+  border: 3px solid var(--detail);
+  border-radius: 50px;
+  background: #000;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.send-btn:hover{
+  background: var(--detail);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 950px){
+  .contact-card{
+    grid-template-columns: 1fr;
+  }
+
+  .contact-info h2{
+    font-size: 2rem;
+  }
+}
