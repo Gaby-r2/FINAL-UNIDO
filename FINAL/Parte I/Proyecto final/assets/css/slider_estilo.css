@@ -617,59 +617,44 @@ button, .btn-slider, .arrival-nav {
 }
 
 /* --- 7. OPTIMIZACIÓN FINAL PARA MÓVIL --- */
+/* --- 7. OPTIMIZACIÓN PARA MÓVIL --- */
 @media screen and (max-width: 768px) {
-    /* 1. ESPACIADO DE SECCIÓN */
-    .new-arrivals {
-        padding: 30px 0 !important;
-        background: #000 !important;
-    }
 
-    /* 2. EL CONTENEDOR (Arregla el centrado de la captura 16) */
-    .arrivals-window {
-        width: 90% !important; 
-        margin: 0 auto !important;
-        overflow: hidden !important;
-        display: flex !important;
-        justify-content: center !important;
-    }
-
-    /* 3. TAMAÑO DE DISCOS (Más pequeños para que no choquen) */
-    .vinyl-wrapper {
-        height: 180px !important; 
-        margin-bottom: 5px !important;
-    }
-
-    .album-cover {
-        width: 160px !important; 
-        height: 160px !important;
-    }
-
-    /* 4. TEXTOS (Solución definitiva al amontonamiento) */
-    .product-card h3 {
-        font-size: 1.4rem !important; /* Mucho más pequeño para que quepa en una línea */
-        margin: 5px 0 !important;
+    /* SECCIÓN 1: TEXTO PEQUEÑO (24px) */
+    .hero-container h2 {
+        font-size: 24px !important; 
         text-align: center !important;
-    }
-
-    .product-card p {
-        font-size: 0.8rem !important;
-        margin-bottom: 10px !important;
-    }
-
-    /* 5. BOTONES (Unificación total de image_c9403f.png) */
-    .btn-slider, 
-    .news-section .btn-more {
+        width: 85% !important;
+        margin: 100px auto 20px auto !important;
+        line-height: 1.4 !important; /* Para que no se corte el texto */
         display: block !important;
-        width: 200px !important; /* Ancho fijo para ambos */
-        margin: 10px auto !important;
-        padding: 10px 0 !important;
-        font-size: 0.8rem !important;
-        text-align: center !important;
-        border: 1px solid #fff !important;
-        background: transparent !important;
-        color: #fff !important;
-        position: relative !important;
-        left: auto !important;
-        transform: none !important;
+    }
+
+    /* SECCIÓN 2: DISCOS (Sin amontonarse) */
+    .product-card {
+        min-width: 100% !important;
+        flex: 0 0 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    /* SECCIÓN 3: NOTICIAS (Cuadro ajustado, sin fondo negro sobrante) */
+    .news-card {
+        width: 280px !important; /* El cuadro es más chico ahora */
+        margin: 0 auto 20px auto !important;
+        background: transparent !important; /* Quitamos fondos raros */
+        overflow: hidden !important;
+    }
+
+    .news-image-container {
+        width: 100% !important;
+        height: 160px !important; /* Altura fija para que la imagen mande */
+    }
+
+    .news-image-container img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important; /* La imagen llena el cuadro perfectamente */
     }
 }
