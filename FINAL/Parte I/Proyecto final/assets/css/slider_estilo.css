@@ -618,119 +618,58 @@ button, .btn-slider, .arrival-nav {
 
 /* --- 7. OPTIMIZACIÓN FINAL PARA MÓVIL --- */
 @media screen and (max-width: 768px) {
-    
-    /* Configuración de la sección */
+    /* 1. ESPACIADO DE SECCIÓN */
     .new-arrivals {
-        padding: 50px 0 !important;
+        padding: 30px 0 !important;
         background: #000 !important;
     }
 
-    .section-title {
-        margin-bottom: 30px !important;
-        font-size: 1.2rem !important;
-        text-align: center !important;
-        width: 100%;
-    }
-
-    /* EL CUADRO FIJO (arrivals-window): Vital para cortar y centrar */
+    /* 2. EL CONTENEDOR (Arregla el centrado de la captura 16) */
     .arrivals-window {
-        width: 90% !important; /* Dejamos un 5% de aire a cada lado */
-        overflow: hidden !important; 
-        display: flex !important;
-        
-        /* --- SOLUCIÓN PARA CENTRAR EL BLOQUE (image_9.png) --- */
-        justify-content: center !important; 
-        align-items: center !important;
-        
-        margin: 0 auto !important; /* Centrado horizontal del contenedor */
-        position: relative !important;
-    }
-
-    /* El contenedor que mueve las imágenes */
-    .arrivals-container {
-        display: flex !important;
-        transition: transform 0.4s ease-out !important; 
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    /* LA TARJETA (Fuerza a ocupar el 100% del Cuadro Fijo) */
-    .product-card {
-        min-width: 100% !important; 
-        flex: 0 0 100% !important;
-        
-        padding: 0 !important;
-        margin: 0 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-    }
-
-    /* Vinilo y Portada (Tamaño óptimo para que no toque flechas laterales) */
-    .vinyl-wrapper {
-        width: 100% !important;
-        height: 230px !important;
-        margin-bottom: 10px !important;
+        width: 90% !important; 
+        margin: 0 auto !important;
+        overflow: hidden !important;
         display: flex !important;
         justify-content: center !important;
-        align-items: center !important;
+    }
+
+    /* 3. TAMAÑO DE DISCOS (Más pequeños para que no choquen) */
+    .vinyl-wrapper {
+        height: 180px !important; 
+        margin-bottom: 5px !important;
     }
 
     .album-cover {
-        width: 210px !important; /* Reducido un poco para dar más aire a las flechas */
-        height: 210px !important;
-        object-fit: cover !important;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.5) !important;
+        width: 160px !important; 
+        height: 160px !important;
     }
 
-    /* Omitimos el vinilo físico en móvil */
-    .vinyl-disk { 
-        display: none !important; 
+    /* 4. TEXTOS (Solución definitiva al amontonamiento) */
+    .product-card h3 {
+        font-size: 1.4rem !important; /* Mucho más pequeño para que quepa en una línea */
+        margin: 5px 0 !important;
+        text-align: center !important;
     }
 
-    /* --- SOLUCIÓN PARA LOS BOTONES (image_9.png) --- */
-    
-    /* Ajuste general de los botones en móvil */
-    .btn-slider, .btn-more {
-        display: block !important;
-        margin: 15px auto !important; /* Centrado y con margen superior/inferior */
-        padding: 12px 35px !important; /* Tamaño cómodo para el dedo */
-        font-size: 0.85rem !important;
-        width: 80% !important; /* Ocupan la mayor parte del ancho */
-        max-width: 300px !important; /* Evitamos que sean gigantes en tablets */
-        transform: translateY(0) !important; /* Eliminamos el desfase vertical */
+    .product-card p {
+        font-size: 0.8rem !important;
+        margin-bottom: 10px !important;
     }
 
-    /* Botón Ver (Ver perfil) */
-/* --- UNIFICACIÓN DE ESTÉTICA DE BOTONES EN MÓVIL --- */
-    
-    /* Aplicamos el mismo estilo a ambos botones */
+    /* 5. BOTONES (Unificación total de image_c9403f.png) */
     .btn-slider, 
     .news-section .btn-more {
         display: block !important;
-        width: 80% !important; /* Misma anchura para ambos */
-        max-width: 280px !important; /* Evita que se estiren de más */
-        margin: 20px auto !important; /* Centrado automático y separación vertical */
-        
-        /* Estética unificada */
-        padding: 12px 0 !important; /* Altura igual para ambos */
+        width: 200px !important; /* Ancho fijo para ambos */
+        margin: 10px auto !important;
+        padding: 10px 0 !important;
+        font-size: 0.8rem !important;
         text-align: center !important;
-        font-size: 0.9rem !important;
-        letter-spacing: 2px !important;
-        text-transform: uppercase !important;
-        
-        /* Reset de posiciones de escritorio */
-        transform: none !important; 
+        border: 1px solid #fff !important;
+        background: transparent !important;
+        color: #fff !important;
         position: relative !important;
-        left: 0 !important;
-        bottom: 0 !important;
-    }
-
-    /* Ajuste específico para el contenedor de los discos */
-    .album-info {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important; /* Centra el botón VER respecto al texto */
-        width: 100% !important;
+        left: auto !important;
+        transform: none !important;
     }
 }
