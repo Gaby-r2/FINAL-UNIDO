@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Home | The Vault Records</title>
+    <!-- The Vault Records - Página de Inicio -->
+    <!--Definir la codificación de caracteres y la escala visual para dispositivos móviles.
+    Se vinculan los recursos externos como la tipografía y la hoja de estilos principal.-->
+    <title>Inicio | The Vault Records</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="icon" href="assets/design/icon2.png" type="image/png">
@@ -9,6 +12,7 @@
     <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 <body>
+    <!--Esta estructura está diseñada para alojar el desplazamiento horizontal infinito de las promociones vigentes de la tienda.-->
     <div class="info-promos">
         <div class="promo-scroller">
             <div class="promo-content">
@@ -17,6 +21,8 @@
                 <span>7 Artistas Exclusivos</span><span>•</span>
                 <span>Visita The Vault London - Oct 2026</span><span>•</span>
             </div>
+            <!--Mecanismo de Desplazamiento Infinito (Bucle):
+            Duplicación técnica del contenido para asegurar que el scroller no deje espacios vacíos al finalizar la animación, permitiendo un flujo visual constante.-->
             <div class="promo-content">
                 <span>Vinilos de Edición Limitada</span><span>•</span>
                 <span>Envíos Internacionales</span><span>•</span>
@@ -25,11 +31,12 @@
             </div>
         </div>
     </div>
-
+    <!--Bloque de encabezado principal que utiliza un video de fondo con reproducción automática y silencio para captar la atención del usuario sin interrumpir su experiencia.-->
     <header class="hero">
         <video autoplay muted loop playsinline class="bg-video">
             <source src="images/branding/background_video.mp4" type="video/mp4">
         </video>
+        <!--Capa de Superposición de Identidad Visual: Contenedor central que posiciona el logotipo y el botón de acceso directo sobre el contenido multimedia.-->
         <div class="content-overlay">
             <img src="images/branding/icon2.png" alt="The Vault Logo" class="logo">
             <a href="Gallery.html" class="button">BIENVENIDO</a>
